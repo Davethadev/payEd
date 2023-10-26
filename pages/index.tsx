@@ -1,9 +1,17 @@
-import { Button, Group } from "@mantine/core";
+import Head from "next/head";
+import Layout from "../components/layout";
 
-export default function IndexPage() {
+export default function Home() {
   return (
-    <Group mt={50} justify="center">
-      <Button size="xl">Welcome to Mantine!</Button>
-    </Group>
+    <>
+      <Head>
+        <title>{""}</title>
+      </Head>
+      <Layout>
+        <section className={""}>
+          <p className="text-xl">payEd</p>
+        </section>
+      </Layout>
+    </>
   );
 }
