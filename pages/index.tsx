@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/layout";
+import { StatsGrid } from "../components/StatsGrid";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
       </Head>
       <Layout>
         <section className={""}>
-          <p className="text-xl">payEd</p>
+          <StatsGrid />
         </section>
       </Layout>
     </>
