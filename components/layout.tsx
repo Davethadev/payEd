@@ -23,6 +23,7 @@ import {
   IconPhoneOutgoing,
   IconChevronRight,
   IconSearch,
+  IconLogout,
 } from "@tabler/icons-react";
 import { LinksGroup } from "./LinksGroup";
 import classes from "../styles/NavbarNested.module.css";
@@ -53,7 +54,7 @@ const mockdata = [
       { label: "Releases schedule", link: "/" },
     ],
   },
-  { label: "Steams", icon: IconDna2 },
+  { label: "Streams", icon: IconDna2, link: "/streams" },
 
   {
     label: "Settings",
@@ -102,6 +103,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className={`${classes.linksInner}`}
             >
               {links}
+              <Link href={"/"}>
+                <Group className="mt-24 px-4">
+                  <IconLogout />
+                  <span className="text-sm font-[500]">Logout</span>
+                </Group>
+              </Link>
             </div>
           </ScrollArea>
         </nav>

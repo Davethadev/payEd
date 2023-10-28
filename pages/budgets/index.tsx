@@ -29,32 +29,34 @@ export default function Budgets() {
   ];
   return (
     <>
-      <main>
-        <StatsGrid />
-        <section className="px-4">
-          <Stack>
-            <Text>Budgets</Text>
-            <Flex align={"center"} gap={"md"}>
-              <Paper
-                className="w-44 h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
-                withBorder
-                p="md"
-                radius="md"
-              >
-                +
-              </Paper>
-              {budget.map((item) => {
-                const { title, amount, percentage } = item;
-                return (
-                  <Link href={"/budgets/123324"}>
-                    <BudgetCard detail={item} />
-                  </Link>
-                );
-              })}
-            </Flex>
-          </Stack>
-        </section>
-      </main>
+      <Layout>
+        <main>
+          <StatsGrid />
+          <section className="px-4">
+            <Stack>
+              <Text>Budgets</Text>
+              <Flex align={"center"} gap={"md"}>
+                <Paper
+                  className="w-44 h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
+                  withBorder
+                  p="md"
+                  radius="md"
+                >
+                  +
+                </Paper>
+                {budget.map((item) => {
+                  const { title, amount, percentage } = item;
+                  return (
+                    <Link href={"/budgets/123324"}>
+                      <BudgetCard detail={item} />
+                    </Link>
+                  );
+                })}
+              </Flex>
+            </Stack>
+          </section>
+        </main>
+      </Layout>
     </>
   );
 }

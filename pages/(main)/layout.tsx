@@ -23,10 +23,12 @@ import {
   IconPhoneOutgoing,
   IconChevronRight,
   IconSearch,
+  IconLogout,
 } from "@tabler/icons-react";
 import classes from "../styles/NavbarNested.module.css";
 import userClasses from "../styles/UserButton.module.css";
 import { LinksGroup } from "../../components/LinksGroup";
+import Link from "next/link";
 
 const mockdata = [
   { label: "Dashboard", icon: IconList, link: "/" },
