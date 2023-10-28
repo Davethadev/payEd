@@ -24,15 +24,13 @@ import {
   IconChevronRight,
   IconSearch,
 } from "@tabler/icons-react";
-import { LinksGroup } from "./LinksGroup";
 import classes from "../styles/NavbarNested.module.css";
 import userClasses from "../styles/UserButton.module.css";
-import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
-import Link from "next/link";
+import { LinksGroup } from "../../components/LinksGroup";
 
 const mockdata = [
-  { label: "Dashboard", icon: IconList },
-  { label: "Budgets", link: "/budget", icon: IconCurrencyEthereum },
+  { label: "Dashboard", icon: IconList, link: "/" },
+  { label: "Budgets", icon: IconCurrencyEthereum, link: "budgets" },
   {
     label: "Transactions",
     icon: IconCpu,
@@ -110,7 +108,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <TextInput leftSection={<IconSearch />} placeholder="Search" />
             <Text>University of Nigeria Nsukka</Text>
             <IconBell />
-            <ColorSchemeToggle />
             <UnstyledButton className={userClasses.user}>
               <Group>
                 <Avatar

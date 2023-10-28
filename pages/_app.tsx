@@ -5,6 +5,7 @@ import { theme } from "../theme";
 import "../styles/globals.css";
 import { AppProvider } from "../context/context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Layout from "../components/layout";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,9 @@ export default function App({ Component, pageProps }: any) {
             />
             <link rel="shortcut icon" href="/favicon.svg" />
           </Head>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </MantineProvider>
       </AppProvider>
     </QueryClientProvider>

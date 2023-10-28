@@ -8,11 +8,9 @@ export default function Home() {
       <Head>
         <title>{""}</title>
       </Head>
-      <Layout>
-        <section className={""}>
-          <StatsGrid />
-        </section>
-      </Layout>
+      <section className={""}>
+        <StatsGrid />
+      </section>
     </>
   );
 }
