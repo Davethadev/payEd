@@ -29,8 +29,8 @@ import classes from "../styles/NavbarNested.module.css";
 import userClasses from "../styles/UserButton.module.css";
 
 const mockdata = [
-  { label: "Dashboard", icon: IconList },
-  { label: "Budgets", icon: IconCurrencyEthereum },
+  { label: "Dashboard", link: "/", icon: IconList },
+  { label: "Budgets", link: "/budgets", icon: IconCurrencyEthereum },
   {
     label: "Transactions",
     icon: IconCpu,
