@@ -31,8 +31,8 @@ import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
 import Link from "next/link";
 
 const mockdata = [
-  { label: "Dashboard", icon: IconList },
-  { label: "Budgets", link: "/budget", icon: IconCurrencyEthereum },
+  { label: "Dashboard", link: "/", icon: IconList },
+  { label: "Budgets", link: "/budgets", icon: IconCurrencyEthereum },
   {
     label: "Transactions",
     icon: IconCpu,

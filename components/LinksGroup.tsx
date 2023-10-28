@@ -10,12 +10,14 @@ import {
 } from "@mantine/core";
 import { IconCalendarStats, IconChevronRight } from "@tabler/icons-react";
 import classes from "../styles/LinksGroup.module.css";
+import Link from "next/link";
 
 interface LinksGroupProps {
   icon: React.FC<any>;
   label: string;
   initiallyOpened?: boolean;
   links?: { label: string; link: string }[];
+  link?: string;
 }
 
 export function LinksGroup({
@@ -23,6 +25,7 @@ export function LinksGroup({
   label,
   initiallyOpened,
   links,
+  link,
 }: LinksGroupProps) {
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
@@ -38,7 +41,7 @@ export function LinksGroup({
     </Text>
   ));
 
-  return (
+  return hasLinks ? (
     <>
       <UnstyledButton
         onClick={() => setOpened((o) => !o)}
@@ -64,6 +67,17 @@ export function LinksGroup({
       </UnstyledButton>
       {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
+  ) : (
+    <Link href={link ? link : "/"}>
+      <UnstyledButton className={classes.control}>
+        <Group justify="space-between" gap={0}>
+          <Box style={{ display: "flex", alignItems: "center" }}>
+            <Icon style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+            <Box ml="md">{label}</Box>
+          </Box>
+        </Group>
+      </UnstyledButton>
+    </Link>
   );
 }
 
