@@ -3,6 +3,7 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import { theme } from "../theme";
 import "../styles/globals.css";
+import '@mantine/dates/styles.css';
 import { AppProvider } from "../context/context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

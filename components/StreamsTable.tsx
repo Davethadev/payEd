@@ -1,6 +1,6 @@
 import cx from "clsx";
 import { useState } from "react";
-import { Table } from "@mantine/core";
+import { Paper, Table } from "@mantine/core";
 import classes from "../styles/TableScrollArea.module.css";
 
 const data = [
@@ -58,7 +58,10 @@ export function StreamsTable() {
   const [scrolled, setScrolled] = useState(false);
 
   const rows = data.map((row, index) => (
-    <Table.Tr key={index}>
+    <Table.Tr
+      key={index}
+      className="border-1 border-gray-200 h-14 items-center rounded-md grid grid-cols-4"
+    >
       <Table.Td>{row.title}</Table.Td>
       <Table.Td>{row.description}</Table.Td>
       <Table.Td>{row.amount}</Table.Td>
@@ -67,18 +70,20 @@ export function StreamsTable() {
   ));
 
   return (
-    <Table miw={700}>
+    <Table className=" w-full" miw={700}>
       <Table.Thead
         className={cx(classes.header, { [classes.scrolled]: scrolled })}
       >
-        <Table.Tr>
+        <Table.Tr className="grid grid-cols-4">
           <Table.Th>Title</Table.Th>
           <Table.Th>Description</Table.Th>
           <Table.Th>Amount</Table.Th>
           <Table.Th>Date</Table.Th>
         </Table.Tr>
       </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
+      <Table.Tbody className="space-y-3 mt-3 flex flex-col w-full">
+        {rows}
+      </Table.Tbody>
     </Table>
   );
 }

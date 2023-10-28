@@ -1,10 +1,21 @@
-import { Paper, Text, Badge, Flex, Stack } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import {
+  Paper,
+  Text,
+  Badge,
+  Flex,
+  Stack,
+  Modal,
+  Button,
+  TextInput,
+} from "@mantine/core";
 import { StatsGrid } from "../../components/StatsGrid";
 import Layout from "../../components/layout";
 import Link from "next/link";
 import BudgetCard from "../../components/BudgetCard";
 
 export default function Budgets() {
+  const [opened, { open, close }] = useDisclosure(false);
   const budget = [
     {
       title: "Housing",
@@ -29,6 +40,20 @@ export default function Budgets() {
   ];
   return (
     <>
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Create Budget"
+        centered
+        padding={"lg"}
+      >
+        <Stack>
+          <TextInput label="Budget title" className="space-y-2" />
+          <Button className="bg-blue-400 text-white rounded w-fit ml-auto">
+            Create
+          </Button>
+        </Stack>
+      </Modal>
       <Layout>
         <main>
           <StatsGrid />
@@ -36,14 +61,16 @@ export default function Budgets() {
             <Stack>
               <Text>Budgets</Text>
               <Flex align={"center"} gap={"md"}>
-                <Paper
-                  className="w-44 h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
-                  withBorder
-                  p="md"
-                  radius="md"
-                >
-                  +
-                </Paper>
+                <Button className="w-44 h-[140px]" onClick={open}>
+                  <Paper
+                    className="w-44 h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
+                    withBorder
+                    p="md"
+                    radius="md"
+                  >
+                    +
+                  </Paper>
+                </Button>
                 {budget.map((item) => {
                   const { title, amount, percentage } = item;
                   return (
