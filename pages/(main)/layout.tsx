@@ -1,6 +1,18 @@
 import Head from "next/head";
-import { ScrollArea, Text } from "@mantine/core";
 import {
+  Group,
+  Code,
+  ScrollArea,
+  rem,
+  Text,
+  Image,
+  UnstyledButton,
+  Avatar,
+  TextInput,
+  Flex,
+} from "@mantine/core";
+import {
+  IconLock,
   IconList,
   IconCurrencyEthereum,
   IconCpu,
@@ -9,18 +21,18 @@ import {
   IconSettings,
   IconUserCircle,
   IconPhoneOutgoing,
-  IconDiamond,
+  IconChevronRight,
+  IconSearch,
   IconLogout,
 } from "@tabler/icons-react";
-import { LinksGroup } from "./LinksGroup";
 import classes from "../styles/NavbarNested.module.css";
-import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
+import userClasses from "../styles/UserButton.module.css";
+import { LinksGroup } from "../../components/LinksGroup";
 import Link from "next/link";
 
 const mockdata = [
-  { label: "Dashboard", link: "/", icon: IconList },
-  { label: "Budgets", link: "/budgets", icon: IconCurrencyEthereum },
-  { label: "Marketplace", link: "/marketplace", icon: IconDiamond },
+  { label: "Dashboard", icon: IconList, link: "/" },
+  { label: "Budgets", icon: IconCurrencyEthereum, link: "budgets" },
   {
     label: "Transactions",
     icon: IconCpu,
@@ -41,7 +53,7 @@ const mockdata = [
       { label: "Releases schedule", link: "/" },
     ],
   },
-  { label: "Streams", icon: IconDna2, link: "/streams" },
+  { label: "Steams", icon: IconDna2 },
 
   {
     label: "Settings",
@@ -78,8 +90,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="" content={""} />
         <meta name="" content="" />
       </Head>
-      <main className="flex h-[100vh] max-h-[100vh] overflow-hidden">
-        <nav className={`${classes.navbar} h-[100vh] max-h-[100vh]`}>
+      <main className="flex">
+        <nav className={classes.navbar}>
           <div className={classes.header}>
             <Text className="">Pay Ed</Text>
           </div>
@@ -90,21 +102,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className={`${classes.linksInner}`}
             >
               {links}
-              <Link href={"/"}>
-                <Group className="mt-24 px-4">
-                  <IconLogout />
-                  <span className="text-sm font-[500]">Logout</span>
-                </Group>
-              </Link>
             </div>
           </ScrollArea>
         </nav>
-        <section className="w-full overflow-y-auto">
+        <section className="px-4 w-full">
           <Flex align={"center"} justify={"space-between"}>
             <TextInput leftSection={<IconSearch />} placeholder="Search" />
             <Text>University of Nigeria Nsukka</Text>
             <IconBell />
-            <ColorSchemeToggle />
             <UnstyledButton className={userClasses.user}>
               <Group>
                 <Avatar

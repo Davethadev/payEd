@@ -1,6 +1,6 @@
 import { Group, Paper, SimpleGrid, Text, Badge, Flex } from "@mantine/core";
 import { IconEye, IconArrowUp, IconDotsVertical } from "@tabler/icons-react";
-import classes from "../styles/StatsGrid.module.css";
+import classes from "../styles/StatsGridBudget.module.css";
 
 const data = [
   { title: "Total Balance", amount: "100,635.15" },
@@ -8,7 +8,7 @@ const data = [
   { title: "Expenses", amount: "-10,000" },
 ] as const;
 
-export function StatsGrid() {
+export function StatsGridBudget() {
   const stats = data.map((stat) => {
     return (
       <Paper className="w-60" withBorder p="md" radius="md" key={stat.title}>
