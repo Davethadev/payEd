@@ -7,6 +7,8 @@ import {
   SimpleGrid,
   Box,
   Button,
+  Modal,
+  TextInput,
 } from "@mantine/core";
 import Link from "next/link";
 import {
@@ -18,8 +20,10 @@ import {
 import StreamCard from "../../components/StreamCard";
 import { StreamsTable } from "../../components/StreamsTable";
 import Layout from "../../components/layout";
+import { useDisclosure } from "@mantine/hooks";
 
 export default function Streams() {
+  const [opened, { open, close }] = useDisclosure(false);
   const streams = [
     {
       title: "Government grants",
@@ -39,31 +43,55 @@ export default function Streams() {
     },
   ];
   return (
-    <Layout>
-      <section className=" p-6">
-        <Stack className="space-y-10">
-          <Paper withBorder radius={"md"} className="p-6">
-            <Stack className="space-y-4">
-              <Text className="text-xl">Income Stream</Text>
-              <Paper className="w-60" withBorder p="md" radius="md">
-                <Group justify="space-between">
-                  <Text size="xs" c="dimmed">
-                    Total Balance
-                  </Text>
-                  <IconDotsVertical />
-                </Group>
-                <Group className="pt-8">
-                  <Text>100,635.15</Text>
-                  <IconEye />
-                  <Badge leftSection={<IconArrowUp size={12} />}>10%</Badge>
-                </Group>
-              </Paper>
-            </Stack>
-          </Paper>
-
-          <Box className="space-y-6">
-            <Text className="text-xl">Income Streams</Text>
-            <SimpleGrid cols={4}>
+    <>
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Create Stream"
+        centered
+        padding={"lg"}
+      >
+        <Stack>
+          <TextInput label="Stream name" className="space-y-2" />
+          <TextInput label="Description" className="space-y-2" />
+          <Button className="bg-blue-400 text-white rounded w-fit ml-auto">
+            Create
+          </Button>
+        </Stack>
+      </Modal>
+      <Layout>
+        <section className="bg-purple-100 p-6">
+          <Stack>
+            <Paper withBorder radius={"md"} p={"md"}>
+              <Stack>
+                <Text>Income Stream</Text>
+                <Paper className="w-60" withBorder p="md" radius="md">
+                  <Group justify="space-between">
+                    <Text size="xs" c="dimmed">
+                      Total Balance
+                    </Text>
+                    <IconDotsVertical />
+                  </Group>
+                  <Group className="pt-8">
+                    <Text>100,635.15</Text>
+                    <IconEye />
+                    <Badge leftSection={<IconArrowUp size={12} />}>10%</Badge>
+                  </Group>
+                </Paper>
+              </Stack>
+            </Paper>
+            <Text>Income Streams</Text>
+            <Flex wrap={"wrap"} gap={"md"} className="flex-col md:flex-row">
+              <Button className="w-screen md:w-60 h-48" onClick={open}>
+                <Paper
+                  className="w-full md:w-60 h-48 text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
+                  withBorder
+                  p="md"
+                  radius="md"
+                >
+                  +
+                </Paper>
+              </Button>
               {streams.map((stream, index) => {
                 return (
                   <Link key={index} href="/streams/23432">
@@ -71,30 +99,29 @@ export default function Streams() {
                   </Link>
                 );
               })}
-            </SimpleGrid>
-
+            </Flex>
             <Group justify="end">
-              <Button variant="default">
-                <Text className="mr-2">See more</Text> <IconArrowRight />
-              </Button>
+              <Anchor className="text-black" href="/">
+                See more
+              </Anchor>
+              <IconArrowRight />
             </Group>
-          </Box>
-
-          <Paper
-            withBorder
-            p="md"
-            radius="md"
-            className="bg-transparent border-black"
-          >
-            <Paper p="md" radius="md" className="bg-purple-800/20">
-              <Group justify="start">
-                <Text>Received payments</Text>
-              </Group>
+            <Paper
+              withBorder
+              p="md"
+              radius="md"
+              className="bg-transparent border-black"
+            >
+              <Paper p="md" radius="md" className="bg-purple-200">
+                <Group justify="start">
+                  <Text>Received payments</Text>
+                </Group>
+              </Paper>
+              <StreamsTable />
             </Paper>
-            <StreamsTable />
-          </Paper>
-        </Stack>
-      </section>
-    </Layout>
+          </Stack>
+        </section>
+      </Layout>
+    </>
   );
 }

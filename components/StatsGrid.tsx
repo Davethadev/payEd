@@ -11,14 +11,20 @@ const data = [
 export function StatsGrid() {
   const stats = data.map((stat) => {
     return (
-      <Paper className="w-60" withBorder p="md" radius="md" key={stat.title}>
+      <Paper
+        className="w-full md:w-60"
+        withBorder
+        p="md"
+        radius="md"
+        key={stat.title}
+      >
         <Group justify="space-between">
           <Text size="xs" c="dimmed" className={classes.title}>
             {stat.title}
           </Text>
           <IconDotsVertical />
         </Group>
-        <Group className="pt-8">
+        <Group className="pt-8" justify="space-between">
           <Text>{stat.amount}</Text>
           <IconEye />
           <Badge leftSection={<IconArrowUp size={12} />}>10%</Badge>

@@ -22,90 +22,88 @@ export default function Signup() {
   });
   return (
     <>
-      <AspectRatio ratio={16 / 9}>
-        <main>
-          <Flex align={"center"} gap={"xl"} className="pl-10">
-            <div className="bg-purple-200 p-6 rounded-md h-[90vh]">
-              <Image src={"./payed.png"} w={"full"} className="h-full" />
-            </div>
-            <section className="w-2/3 h-screen flex justify-center items-center">
-              <form action="" className="w-[472px] mx-auto">
-                <Stack gap={"xl"}>
-                  <Text className="text-2xl text-center text-purple-600 font-[600]">
-                    Pay Ed
+      <main>
+        <Flex align={"center"} gap={"xl"} className="pl-10">
+          <div className="bg-purple-200 p-6 rounded-md w-1/2 h-[90vh]">
+            <Image src={"./payed.png"} className="h-full" />
+          </div>
+          <section className="w-1/2 h-screen flex justify-center items-center">
+            <form action="" className="w-[472px] mx-auto">
+              <Stack gap={"xl"}>
+                <Text className="text-2xl text-center text-purple-600 font-[600]">
+                  Pay Ed
+                </Text>
+                <Box className="text-center">
+                  <Text className="text-center text-2xl font-[600]">
+                    Welcome Aboard
                   </Text>
-                  <Box className="text-center">
-                    <Text className="text-center text-2xl font-[600]">
-                      Welcome Aboard
-                    </Text>
-                    <small className="text-gray-400">
-                      Let's get you set up
-                    </small>
-                  </Box>
+                  <small className="text-gray-400">Let's get you set up</small>
+                </Box>
+                <TextInput
+                  label="Enter school name"
+                  placeholder="University of Nigeria, Nsukka"
+                  value={newSchool.school_name}
+                  onChange={(e) =>
+                    setNewSchool({
+                      ...newSchool,
+                      school_name: e.target.value,
+                    })
+                  }
+                />
+                <Box>
                   <TextInput
-                    label="Enter school name"
-                    placeholder="University of Nigeria, Nsukka"
-                    value={newSchool.school_name}
+                    label="Enter school email"
+                    value={newSchool.school_email}
                     onChange={(e) =>
                       setNewSchool({
                         ...newSchool,
-                        school_name: e.target.value,
+                        school_email: e.target.value,
                       })
                     }
+                    placeholder="Damiloladeola12@gmail.com"
                   />
-                  <Box>
-                    <TextInput
-                      label="Enter school email"
-                      value={newSchool.school_email}
-                      onChange={(e) =>
-                        setNewSchool({
-                          ...newSchool,
-                          school_email: e.target.value,
-                        })
-                      }
-                      placeholder="Damiloladeola12@gmail.com"
-                    />
-                    <small className="text-gray-400">
-                      *school email should be a custom email e.g
-                      schoolemail@edu.ng
-                    </small>
-                  </Box>
-                  <Box>
-                    <PasswordInput
-                      label="Set a Password"
-                      value={newSchool.password}
-                      onChange={(e) =>
-                        setNewSchool({ ...newSchool, password: e.target.value })
-                      }
-                      placeholder="*********"
-                    />
-                    <small className="text-gray-400">
-                      *passwords should be at least 8 characters and contain at
-                      least one uppercase and one special character
-                    </small>
-                  </Box>
-                  <Button
-                    onClick={() => setVisible((v) => !v)}
-                    fullWidth
-                    maw={200}
-                    mx="auto"
-                    mt="xl"
-                    className="bg-purple-400 rounded text-white"
-                    color="black"
-                  >
-                    Next
-                  </Button>
-                </Stack>
-              </form>
-            </section>
-          </Flex>
-        </main>
-        {visible && (
-          <Overlay
-            color="#000"
-            backgroundOpacity={0.65}
-            children={
-              <Container className="text-center">
+                  <small className="text-gray-400">
+                    *school email should be a custom email e.g
+                    schoolemail@edu.ng
+                  </small>
+                </Box>
+                <Box>
+                  <PasswordInput
+                    label="Set a Password"
+                    value={newSchool.password}
+                    onChange={(e) =>
+                      setNewSchool({ ...newSchool, password: e.target.value })
+                    }
+                    placeholder="*********"
+                  />
+                  <small className="text-gray-400">
+                    *passwords should be at least 8 characters and contain at
+                    least one uppercase and one special character
+                  </small>
+                </Box>
+                <Button
+                  onClick={() => setVisible((v) => !v)}
+                  fullWidth
+                  maw={200}
+                  mx="auto"
+                  mt="xl"
+                  className="bg-purple-400 rounded text-white"
+                  color="black"
+                >
+                  Next
+                </Button>
+              </Stack>
+            </form>
+          </section>
+        </Flex>
+      </main>
+      {visible && (
+        <Overlay
+          color="#000"
+          backgroundOpacity={0.65}
+          children={
+            <Container className="text-center">
+              <AspectRatio ratio={16 / 9}>
                 <Stack gap={"xl"}>
                   <Box className="bg-white p-8 w-28 mx-auto rounded-full">
                     <Image src={"./check.svg"} />
@@ -124,11 +122,11 @@ export default function Signup() {
                     Continue
                   </Button>
                 </Stack>
-              </Container>
-            }
-          />
-        )}
-      </AspectRatio>
+              </AspectRatio>
+            </Container>
+          }
+        />
+      )}
     </>
   );
 }

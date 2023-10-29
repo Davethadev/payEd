@@ -12,7 +12,7 @@ function StreamCard({ detail }: props) {
   const { title, amount } = detail;
   return (
     <Paper
-      className="w-60 h-48 hover:cursor-pointer"
+      className="w-full md:w-60 h-48 hover:cursor-pointer"
       withBorder
       p="md"
       radius="md"

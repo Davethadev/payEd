@@ -16,7 +16,7 @@ export default function Home() {
         {/* <Topnav /> */}
         <section className={""}>
           <StatsGrid />
-          <Paper withBorder p={"md"} radius={"md"}>
+          <Paper withBorder p={"md"} radius={"md"} className="">
             <Group justify="space-between" align="center" className="py-8">
               <Text>Transaction History</Text>
               <Group>

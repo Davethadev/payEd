@@ -1,6 +1,6 @@
 import cx from "clsx";
 import { useState } from "react";
-import { Table } from "@mantine/core";
+import { Box, Table } from "@mantine/core";
 import classes from "../styles/TableScrollArea.module.css";
 
 const data = [
@@ -79,21 +79,23 @@ export function DashboardTable() {
   ));
 
   return (
-    <Table className=" w-full" miw={700}>
-      <Table.Thead
-        className={cx(classes.header, { [classes.scrolled]: scrolled })}
-      >
-        <Table.Tr className="grid grid-cols-5">
-          <Table.Th>Transaction</Table.Th>
-          <Table.Th>Title</Table.Th>
-          <Table.Th>Amount</Table.Th>
-          <Table.Th>Date</Table.Th>
-          <Table.Th>Status</Table.Th>
-        </Table.Tr>
-      </Table.Thead>
-      <Table.Tbody className="space-y-3 mt-3 flex flex-col w-full">
-        {rows}
-      </Table.Tbody>
-    </Table>
+    <Box className="overflow-x-auto overflow-y-hidden">
+      <Table className="" miw={700}>
+        <Table.Thead
+          className={cx(classes.header, { [classes.scrolled]: scrolled })}
+        >
+          <Table.Tr className="grid grid-cols-5">
+            <Table.Th>Transaction</Table.Th>
+            <Table.Th>Title</Table.Th>
+            <Table.Th>Amount</Table.Th>
+            <Table.Th>Date</Table.Th>
+            <Table.Th>Status</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody className="space-y-3 mt-3 flex flex-col w-full">
+          {rows}
+        </Table.Tbody>
+      </Table>
+    </Box>
   );
 }
