@@ -68,7 +68,7 @@ export function MarketplaceHeader() {
               Connect wallet
             </Button> */}
           </Group>
-          <Text className="leading-5 text-gray-800 text-sm">
+          <Text className="leading-5 text-sm">
             Digitize and sell/auction school assets for temporary or permanent{" "}
             <br />
             ownerships

@@ -4,8 +4,8 @@ import {
   Paper,
   Stack,
   Text,
-  Flex,
-  Anchor,
+  SimpleGrid,
+  Box,
   Button,
 } from "@mantine/core";
 import Link from "next/link";
@@ -40,11 +40,11 @@ export default function Streams() {
   ];
   return (
     <Layout>
-      <section className="bg-purple-100 p-6">
-        <Stack>
-          <Paper withBorder radius={"md"} p={"md"}>
-            <Stack>
-              <Text>Income Stream</Text>
+      <section className=" p-6">
+        <Stack className="space-y-10">
+          <Paper withBorder radius={"md"} className="p-6">
+            <Stack className="space-y-4">
+              <Text className="text-xl">Income Stream</Text>
               <Paper className="w-60" withBorder p="md" radius="md">
                 <Group justify="space-between">
                   <Text size="xs" c="dimmed">
@@ -60,29 +60,33 @@ export default function Streams() {
               </Paper>
             </Stack>
           </Paper>
-          <Text>Income Streams</Text>
-          <Flex gap={"md"}>
-            {streams.map((stream, index) => {
-              return (
-                <Link key={index} href="/streams/23432">
-                  <StreamCard detail={stream} />
-                </Link>
-              );
-            })}
-          </Flex>
-          <Group justify="end">
-            <Anchor className="text-black" href="/">
-              See more
-            </Anchor>
-            <IconArrowRight />
-          </Group>
+
+          <Box className="space-y-6">
+            <Text className="text-xl">Income Streams</Text>
+            <SimpleGrid cols={4}>
+              {streams.map((stream, index) => {
+                return (
+                  <Link key={index} href="/streams/23432">
+                    <StreamCard detail={stream} />
+                  </Link>
+                );
+              })}
+            </SimpleGrid>
+
+            <Group justify="end">
+              <Button variant="default">
+                <Text className="mr-2">See more</Text> <IconArrowRight />
+              </Button>
+            </Group>
+          </Box>
+
           <Paper
             withBorder
             p="md"
             radius="md"
             className="bg-transparent border-black"
           >
-            <Paper p="md" radius="md" className="bg-purple-200">
+            <Paper p="md" radius="md" className="bg-purple-800/20">
               <Group justify="start">
                 <Text>Received payments</Text>
               </Group>

@@ -27,11 +27,12 @@ export function StatsGrid() {
     );
   });
   return (
-    <div className={classes.root}>
+    <Paper withBorder className={" !p-6 !mx-6 !space-y-6"}>
+      <Text className="text-xl">Total Income</Text>
       <Flex wrap={"wrap"} align={"center"} gap={"md"}>
         {stats}
       </Flex>
       {/* <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>{stats}</SimpleGrid> */}
-    </div>
+    </Paper>
   );
 }

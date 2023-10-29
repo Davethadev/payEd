@@ -25,7 +25,7 @@ export default function MarketplaceInfoCard({ item }: Props) {
           <Text size="xl" className="leading-4 font-medium">
             {item.size}
           </Text>
-          <Text size="sm" className="text-gray-800">
+          <Text size="sm" className="">
             {item.title}
           </Text>
         </Box>
