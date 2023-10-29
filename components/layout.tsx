@@ -13,6 +13,8 @@ import {
   Paper,
   Stack,
   Box,
+  Button,
+  Drawer,
 } from "@mantine/core";
 import {
   IconLock,
@@ -28,12 +30,15 @@ import {
   IconSearch,
   IconLogout,
   IconPointFilled,
+  IconMenu2,
 } from "@tabler/icons-react";
 import { LinksGroup } from "./LinksGroup";
 import classes from "../styles/NavbarNested.module.css";
 import userClasses from "../styles/UserButton.module.css";
 import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDisclosure } from "@mantine/hooks";
 
 const mockdata = [
   { label: "Dashboard", link: "/", icon: IconList },
@@ -85,9 +90,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const links = mockdata.map((item) => (
     <LinksGroup {...item} key={item.label} />
   ));
-
+  const location = useRouter();
+  const [opened, { open, close }] = useDisclosure(false);
   return (
     <>
+      <Drawer opened={opened} onClose={close} title="">
+        {/* Drawer content */}
+        <div
+          style={{ fontWeight: "lighter" }}
+          className={`${classes.linksInner}`}
+        >
+          {links}
+          <Link href={"/"}>
+            <Group className="mt-24 px-4">
+              <IconLogout />
+              <span className="text-sm font-[500]">Logout</span>
+            </Group>
+          </Link>
+        </div>
+      </Drawer>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="" />
@@ -95,7 +116,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="" content={""} />
         <meta name="" content="" />
       </Head>
-      <main className="flex">
+      <main className="md:flex">
+        {/* <Button className="bg-white text-black rounded">
+        </Button> */}
+        <button className="md:hidden p-4" onClick={open}>
+          <IconMenu2 />
+        </button>
         <nav className={classes.navbar}>
           <div className={classes.header}>
             <Text className="">Pay Ed</Text>
@@ -117,7 +143,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </ScrollArea>
         </nav>
         <section className="px-4 w-full">
-          <Flex align={"center"} justify={"space-between"}>
+          <Flex
+            align={"center"}
+            justify={"space-between"}
+            className="hidden md:flex"
+          >
             {/* <TextInput leftSection={<IconSearch />} placeholder="Search" /> */}
             <Text>University of Nigeria Nsukka</Text>
             <IconBell />
@@ -149,10 +179,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <hr />
           <div>{children}</div>
         </section>
-        {window.location.pathname === "/" && (
+        {location.pathname === "/" && (
           <Paper
             p={"xl"}
-            className="w-80 pt-10 bg-gradient-to-r from-purple-100 to-purple-50 mx-8"
+            className="w-80 pt-10 bg-gradient-to-r from-purple-100 to-purple-50 mx-8 hidden md:block"
           >
             <Stack gap={"xl"}>
               <div className="circular-progress mx-auto bg-transparent"></div>

@@ -57,13 +57,17 @@ export default function Budgets() {
       <Layout>
         <main>
           <StatsGrid />
-          <section className="px-4">
+          <section>
             <Stack>
               <Text>Budgets</Text>
-              <Flex align={"center"} gap={"md"}>
-                <Button className="w-44 h-[140px]" onClick={open}>
+              <Flex
+                align={"center"}
+                gap={"md"}
+                className="flex-col md:flex-row"
+              >
+                <Button className="w-screen md:w-44 h-[140px]" onClick={open}>
                   <Paper
-                    className="w-44 h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
+                    className="w-screen md:w-44 h-[136px] text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
                     withBorder
                     p="md"
                     radius="md"
