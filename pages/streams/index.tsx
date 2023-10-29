@@ -6,6 +6,8 @@ import {
   Text,
   SimpleGrid,
   Box,
+  Flex,
+  Anchor,
   Button,
   Modal,
   TextInput,
@@ -60,7 +62,7 @@ export default function Streams() {
         </Stack>
       </Modal>
       <Layout>
-        <section className="bg-purple-100 p-6">
+        <section className="p-6">
           <Stack>
             <Paper withBorder radius={"md"} p={"md"}>
               <Stack>
@@ -81,17 +83,16 @@ export default function Streams() {
               </Stack>
             </Paper>
             <Text>Income Streams</Text>
-            <Flex wrap={"wrap"} gap={"md"} className="flex-col md:flex-row">
-              <Button className="w-screen md:w-60 h-48" onClick={open}>
-                <Paper
-                  className="w-full md:w-60 h-48 text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
-                  withBorder
-                  p="md"
-                  radius="md"
-                >
-                  +
-                </Paper>
-              </Button>
+            <SimpleGrid cols={4} className="flex-col md:flex-row">
+              <Paper
+                className="!w-full h-full text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
+                withBorder
+                p="md"
+                onClick={open}
+                radius="md"
+              >
+                +
+              </Paper>
               {streams.map((stream, index) => {
                 return (
                   <Link key={index} href="/streams/23432">
@@ -99,12 +100,12 @@ export default function Streams() {
                   </Link>
                 );
               })}
-            </Flex>
+            </SimpleGrid>
             <Group justify="end">
-              <Anchor className="text-black" href="/">
-                See more
-              </Anchor>
-              <IconArrowRight />
+              <Button variant="default">
+                <Text className="mr-3">See more</Text>
+                <IconArrowRight />
+              </Button>
             </Group>
             <Paper
               withBorder
@@ -112,7 +113,7 @@ export default function Streams() {
               radius="md"
               className="bg-transparent border-black"
             >
-              <Paper p="md" radius="md" className="bg-purple-200">
+              <Paper p="md" radius="md" className="bg-purple-800/20">
                 <Group justify="start">
                   <Text>Received payments</Text>
                 </Group>

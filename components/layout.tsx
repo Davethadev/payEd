@@ -4,11 +4,9 @@ import {
   Text,
   Group,
   Flex,
-  TextInput,
   UnstyledButton,
   Avatar,
   TextInput,
-  Flex,
   Paper,
   Stack,
   Box,
@@ -28,8 +26,6 @@ import {
   IconLogout,
   IconSearch,
   IconChevronRight,
-  IconSearch,
-  IconLogout,
   IconPointFilled,
   IconMenu2,
 } from "@tabler/icons-react";
@@ -143,41 +139,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </ScrollArea>
         </nav>
-        <section className="px-4 w-full">
-          <Flex
-            align={"center"}
-            justify={"space-between"}
-            className="hidden md:flex"
-          >
-            {/* <TextInput leftSection={<IconSearch />} placeholder="Search" /> */}
-            <Text>University of Nigeria Nsukka</Text>
-            <IconBell />
-            <ColorSchemeToggle />
-            <UnstyledButton className={userClasses.user}>
-              <Group>
-                <Avatar
-                  src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
-                  radius="xl"
-                />
-
-                <div style={{ flex: 1 }}>
-                  <Text size="sm" fw={500}>
-                    Harriette Spoonlicker
-                  </Text>
-
-                  <Text c="dimmed" size="xs">
-                    hspoonlicker@outlook.com
-                  </Text>
-                </div>
-
-                <IconChevronRight
-                  style={{ width: rem(14), height: rem(14) }}
-                  stroke={1.5}
-                />
-              </Group>
-            </UnstyledButton>
-          </Flex>
-          <hr />
+        <section className="px-4 w-full overflow-y-auto">
+          <Topnav />
           <div>{children}</div>
         </section>
         {location.pathname === "/" && (
