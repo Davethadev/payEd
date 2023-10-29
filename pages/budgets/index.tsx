@@ -2,7 +2,7 @@ import { useDisclosure } from "@mantine/hooks";
 import {
   Paper,
   Text,
-  Badge,
+  Box,
   Flex,
   Stack,
   Modal,
@@ -55,11 +55,11 @@ export default function Budgets() {
         </Stack>
       </Modal>
       <Layout>
-        <main>
+        <Box className="space-y-10 pt-10">
           <StatsGrid />
           <section>
             <Stack>
-              <Text>Budgets</Text>
+              <Text className="text-xl">Budgets</Text>
               <Flex
                 align={"center"}
                 gap={"md"}
@@ -86,7 +86,7 @@ export default function Budgets() {
               </Flex>
             </Stack>
           </section>
-        </main>
+        </Box>
       </Layout>
     </>
   );

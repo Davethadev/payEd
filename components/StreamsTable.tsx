@@ -60,7 +60,7 @@ export function StreamsTable() {
   const rows = data.map((row, index) => (
     <Table.Tr
       key={index}
-      className="border-1 border-gray-200 h-14 items-center rounded-md grid grid-cols-4"
+      className="border-2 border-purple-800/10 h-14 items-center rounded-md grid grid-cols-4"
     >
       <Table.Td>{row.title}</Table.Td>
       <Table.Td>{row.description}</Table.Td>
@@ -75,7 +75,7 @@ export function StreamsTable() {
         <Table.Thead
           className={cx(classes.header, { [classes.scrolled]: scrolled })}
         >
-          <Table.Tr className="grid grid-cols-4">
+          <Table.Tr className="grid grid-cols-4 h-16 items-center">
             <Table.Th>Title</Table.Th>
             <Table.Th>Description</Table.Th>
             <Table.Th>Amount</Table.Th>

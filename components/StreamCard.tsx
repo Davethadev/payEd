@@ -11,12 +11,7 @@ type props = {
 function StreamCard({ detail }: props) {
   const { title, amount } = detail;
   return (
-    <Paper
-      className="w-full md:w-60 h-48 hover:cursor-pointer"
-      withBorder
-      p="md"
-      radius="md"
-    >
+    <Paper className=" h-48 hover:cursor-pointer" withBorder p="md" radius="md">
       <Stack>
         <Text className="text-[14px]">{title}</Text>
         <Text className="text-[20px] font-[600]">{amount}</Text>

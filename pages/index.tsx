@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Layout from "../components/layout";
 import { StatsGrid } from "../components/StatsGrid";
+// import Topnav from "../components/topnav";
 import { DashboardTable } from "../components/DashboardTable";
 import { Paper, Group, Text, Button } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
@@ -12,6 +13,7 @@ export default function Home() {
         <title>{""}</title>
       </Head>
       <Layout>
+        {/* <Topnav /> */}
         <section className={""}>
           <StatsGrid />
           <Paper withBorder p={"md"} radius={"md"} className="">

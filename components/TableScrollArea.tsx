@@ -66,7 +66,10 @@ export function TableScrollArea() {
   const [scrolled, setScrolled] = useState(false);
 
   const rows = data.map((row, index) => (
-    <Table.Tr key={index}>
+    <Table.Tr
+      key={index}
+      className="border-2 border-purple-800/10 h-14 items-center rounded-md grid grid-cols-4"
+    >
       <Table.Td>{row.title}</Table.Td>
       <Table.Td>{row.description}</Table.Td>
       <Table.Td>{row.amount}</Table.Td>
@@ -76,11 +79,11 @@ export function TableScrollArea() {
   ));
 
   return (
-    <Table miw={700}>
+    <Table miw={700} className=" w-full">
       <Table.Thead
         className={cx(classes.header, { [classes.scrolled]: scrolled })}
       >
-        <Table.Tr>
+        <Table.Tr className="grid grid-cols-4 h-16 items-center">
           <Table.Th>Title</Table.Th>
           <Table.Th>Description</Table.Th>
           <Table.Th>Amount</Table.Th>
@@ -88,7 +91,9 @@ export function TableScrollArea() {
           <Table.Th>Status</Table.Th>
         </Table.Tr>
       </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
+      <Table.Tbody className="space-y-3 mt-3 flex flex-col w-full">
+        {rows}
+      </Table.Tbody>
     </Table>
   );
 }

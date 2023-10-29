@@ -1,15 +1,12 @@
 import Head from "next/head";
 import {
-  Group,
-  Code,
   ScrollArea,
-  rem,
   Text,
-  Image,
+  Group,
+  Flex,
   UnstyledButton,
   Avatar,
   TextInput,
-  Flex,
   Paper,
   Stack,
   Box,
@@ -17,7 +14,6 @@ import {
   Drawer,
 } from "@mantine/core";
 import {
-  IconLock,
   IconList,
   IconCurrencyEthereum,
   IconCpu,
@@ -26,16 +22,16 @@ import {
   IconSettings,
   IconUserCircle,
   IconPhoneOutgoing,
-  IconChevronRight,
-  IconSearch,
+  IconDiamond,
   IconLogout,
+  IconSearch,
+  IconChevronRight,
   IconPointFilled,
   IconMenu2,
 } from "@tabler/icons-react";
 import { LinksGroup } from "./LinksGroup";
 import classes from "../styles/NavbarNested.module.css";
-import userClasses from "../styles/UserButton.module.css";
-import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
+import Topnav from "./topnav";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDisclosure } from "@mantine/hooks";
@@ -43,6 +39,7 @@ import { useDisclosure } from "@mantine/hooks";
 const mockdata = [
   { label: "Dashboard", link: "/", icon: IconList },
   { label: "Budgets", link: "/budgets", icon: IconCurrencyEthereum },
+  { label: "Marketplace", link: "/marketplace", icon: IconDiamond },
   {
     label: "Transactions",
     icon: IconCpu,
@@ -116,13 +113,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="" content={""} />
         <meta name="" content="" />
       </Head>
-      <main className="md:flex">
+      <main className="md:flex h-[100vh] max-h-[100vh] overflow-hidden">
         {/* <Button className="bg-white text-black rounded">
         </Button> */}
         <button className="md:hidden p-4" onClick={open}>
           <IconMenu2 />
         </button>
-        <nav className={classes.navbar}>
+        <nav className={`${classes.navbar} h-[100vh] max-h-[100vh]`}>
           <div className={classes.header}>
             <Text className="">Pay Ed</Text>
           </div>
@@ -142,41 +139,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </ScrollArea>
         </nav>
-        <section className="px-4 w-full">
-          <Flex
-            align={"center"}
-            justify={"space-between"}
-            className="hidden md:flex"
-          >
-            {/* <TextInput leftSection={<IconSearch />} placeholder="Search" /> */}
-            <Text>University of Nigeria Nsukka</Text>
-            <IconBell />
-            <ColorSchemeToggle />
-            <UnstyledButton className={userClasses.user}>
-              <Group>
-                <Avatar
-                  src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
-                  radius="xl"
-                />
-
-                <div style={{ flex: 1 }}>
-                  <Text size="sm" fw={500}>
-                    Harriette Spoonlicker
-                  </Text>
-
-                  <Text c="dimmed" size="xs">
-                    hspoonlicker@outlook.com
-                  </Text>
-                </div>
-
-                <IconChevronRight
-                  style={{ width: rem(14), height: rem(14) }}
-                  stroke={1.5}
-                />
-              </Group>
-            </UnstyledButton>
-          </Flex>
-          <hr />
+        <section className="px-4 w-full overflow-y-auto">
+          <Topnav />
           <div>{children}</div>
         </section>
         {location.pathname === "/" && (
