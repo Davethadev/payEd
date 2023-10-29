@@ -10,6 +10,9 @@ import {
   Avatar,
   TextInput,
   Flex,
+  Paper,
+  Stack,
+  Box,
 } from "@mantine/core";
 import {
   IconLock,
@@ -24,6 +27,7 @@ import {
   IconChevronRight,
   IconSearch,
   IconLogout,
+  IconPointFilled,
 } from "@tabler/icons-react";
 import { LinksGroup } from "./LinksGroup";
 import classes from "../styles/NavbarNested.module.css";
@@ -114,7 +118,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </nav>
         <section className="px-4 w-full">
           <Flex align={"center"} justify={"space-between"}>
-            <TextInput leftSection={<IconSearch />} placeholder="Search" />
+            {/* <TextInput leftSection={<IconSearch />} placeholder="Search" /> */}
             <Text>University of Nigeria Nsukka</Text>
             <IconBell />
             <ColorSchemeToggle />
@@ -145,6 +149,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <hr />
           <div>{children}</div>
         </section>
+        {window.location.pathname === "/" && (
+          <Paper
+            p={"xl"}
+            className="w-80 pt-10 bg-gradient-to-r from-purple-100 to-purple-50 mx-8"
+          >
+            <Stack gap={"xl"}>
+              <div className="circular-progress mx-auto bg-transparent"></div>
+              <Box>
+                <Group>
+                  <IconPointFilled color="gray" />
+                  <Text>Data</Text>
+                </Group>
+                <Group>
+                  <IconPointFilled color="gray" />
+                  <Text>Utility</Text>
+                </Group>
+                <Group>
+                  <IconPointFilled color="gray" />
+                  <Text>Transactions</Text>
+                </Group>
+              </Box>
+            </Stack>
+          </Paper>
+        )}
       </main>
     </>
   );

@@ -7,3 +7,24 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+.circular-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  background: conic-gradient(#ab91c0 270deg, #491d6c 0deg);
+  border-radius: 50%;
+  transform: rotate(180deg);
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  background-color: #fff;
+}

@@ -15,10 +15,10 @@ export default function Signup() {
   return (
     <main className="py-4">
       <Flex align={"center"} className="pl-10">
-        <div className="bg-purple-200 p-6 rounded-md w-1/3 h-[90vh]">
+        <div className="bg-purple-200 p-6 rounded-md w-1/2 h-[90vh]">
           <Image src={"./payed.png"} w={"full"} className="h-full" />
         </div>
-        <section className="w-2/3 h-screen flex justify-center items-center">
+        <section className="w-1/2 h-screen flex justify-center items-center">
           <form action="" className="w-[472px] mx-auto">
             <Stack gap={"xl"}>
               <Text className="text-2xl text-center text-purple-600 font-[600]">
