@@ -1,24 +1,25 @@
-import { Button, Paper, Stack, Text } from "@mantine/core";
+import { Button, Paper, Stack, Text, Box, SimpleGrid } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
 
 type props = {
-  detail: {
-    title: string;
-    amount: string;
-  };
+  detail: any;
 };
 
 function StreamCard({ detail }: props) {
-  const { title, amount } = detail;
+  // const { title, amount } = detail;
   return (
-    <Paper className=" h-48 hover:cursor-pointer" withBorder p="md" radius="md">
-      <Stack>
-        <Text className="text-[14px]">{title}</Text>
-        <Text className="text-[20px] font-[600]">{amount}</Text>
-        <Button variant="default" rightSection={<IconArrowRight size={14} />}>
-          Check details
-        </Button>
-      </Stack>
+    <Paper withBorder className="border-2 relative h-40 hover:cursor-pointer">
+      <Box p="md">
+        <Text className="font-medium">{detail.name}</Text>
+        <Text className="!text-3xl mt-4 font-medium">{detail.amount}</Text>
+      </Box>
+      <Button
+        variant="default"
+        className="absolute h-[3.2rem] text-[1rem] w-full bottom-0"
+        rightSection={<IconArrowRight size={14} />}
+      >
+        Check details
+      </Button>
     </Paper>
   );
 }

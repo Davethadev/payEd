@@ -39,48 +39,48 @@ import { useDisclosure } from "@mantine/hooks";
 const mockdata = [
   { label: "Dashboard", link: "/", icon: IconList },
   { label: "Budgets", link: "/budgets", icon: IconCurrencyEthereum },
-  { label: "Marketplace", link: "/marketplace", icon: IconDiamond },
-  {
-    label: "Transactions",
-    icon: IconCpu,
-    // initiallyOpened: true,
-    links: [
-      { label: "Overview", link: "/" },
-      { label: "Forecasts", link: "/" },
-      { label: "Outlook", link: "/" },
-      { label: "Real time", link: "/" },
-    ],
-  },
-  {
-    label: "Notifications",
-    icon: IconBell,
-    links: [
-      { label: "Overview", link: "/" },
-      { label: "Previous releases", link: "/" },
-      { label: "Releases schedule", link: "/" },
-    ],
-  },
   { label: "Streams", icon: IconDna2, link: "/streams" },
+  { label: "Marketplace", link: "/marketplace", icon: IconDiamond },
+  // {
+  //   label: "Transactions",
+  //   icon: IconCpu,
+  //   // initiallyOpened: true,
+  //   links: [
+  //     { label: "Overview", link: "/" },
+  //     { label: "Forecasts", link: "/" },
+  //     { label: "Outlook", link: "/" },
+  //     { label: "Real time", link: "/" },
+  //   ],
+  // },
+  // {
+  //   label: "Notifications",
+  //   icon: IconBell,
+  //   links: [
+  //     { label: "Overview", link: "/" },
+  //     { label: "Previous releases", link: "/" },
+  //     { label: "Releases schedule", link: "/" },
+  //   ],
+  // },
 
-  {
-    label: "Settings",
-    icon: IconSettings,
-    links: [
-      { label: "Enable 2FA", link: "/" },
-      { label: "Change password", link: "/" },
-      { label: "Recovery codes", link: "/" },
-    ],
-  },
-  { label: "Profile", icon: IconUserCircle },
-  {
-    label: "Call center",
-    icon: IconPhoneOutgoing,
-    links: [
-      { label: "Enable 2FA", link: "/" },
-      { label: "Change password", link: "/" },
-      { label: "Recovery codes", link: "/" },
-    ],
-  },
+  // {
+  //   label: "Settings",
+  //   icon: IconSettings,
+  //   links: [
+  //     { label: "Enable 2FA", link: "/" },
+  //     { label: "Change password", link: "/" },
+  //     { label: "Recovery codes", link: "/" },
+  //   ],
+  // },
+  // { label: "Profile", icon: IconUserCircle },
+  // {
+  //   label: "Call center",
+  //   icon: IconPhoneOutgoing,
+  //   links: [
+  //     { label: "Enable 2FA", link: "/" },
+  //     { label: "Change password", link: "/" },
+  //     { label: "Recovery codes", link: "/" },
+  //   ],
+  // },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -98,12 +98,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           className={`${classes.linksInner}`}
         >
           {links}
-          <Link href={"/"}>
+          {/* <Link href={"/"}>
             <Group className="mt-24 px-4">
               <IconLogout />
               <span className="text-sm font-[500]">Logout</span>
             </Group>
-          </Link>
+          </Link> */}
         </div>
       </Drawer>
       <Head>
@@ -130,12 +130,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className={`${classes.linksInner}`}
             >
               {links}
-              <Link href={"/"}>
+              {/* <Link href={"/"}>
                 <Group className="mt-24 px-4">
                   <IconLogout />
                   <span className="text-sm font-[500]">Logout</span>
                 </Group>
-              </Link>
+              </Link> */}
             </div>
           </ScrollArea>
         </nav>
