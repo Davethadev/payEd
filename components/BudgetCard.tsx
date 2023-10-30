@@ -1,26 +1,19 @@
 import { Badge, Paper, Stack, Text } from "@mantine/core";
 
 type props = {
-  detail: {
-    title: string;
-    amount: string;
-    percentage: string;
-  };
+  detail: any;
 };
 
 function BudgetCard({ detail }: props) {
-  const { title, amount, percentage } = detail;
+  // const { budget_name, amount } = detail;
   return (
-    <Paper
-      className="w-[90vw] mx-4 md:w-44 hover:cursor-pointer"
-      withBorder
-      p="md"
-      radius="md"
-    >
+    <Paper className=" hover:cursor-pointer" withBorder p="md" radius="md">
       <Stack>
-        <Text className="text-[14px]">{title}</Text>
-        <Text className="text-[20px] font-[600]">{amount}</Text>
-        <Badge>{percentage}</Badge>
+        <Text className="text-[14px]">{detail.name}</Text>
+        <Text className="text-xl font-[600]">
+          {parseInt(detail.balance).toLocaleString()}
+        </Text>
+        <Badge>{30}</Badge>
       </Stack>
     </Paper>
   );

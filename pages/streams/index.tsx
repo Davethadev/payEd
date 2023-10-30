@@ -23,8 +23,18 @@ import StreamCard from "../../components/StreamCard";
 import { StreamsTable } from "../../components/StreamsTable";
 import Layout from "../../components/layout";
 import { useDisclosure } from "@mantine/hooks";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { getStreams, createStream } from "../../api/streams";
+import getIncome from "../../api/income";
+import { useState } from "react";
+import { getAccountDetail } from "../../api/accounts";
+import { StatsGridBudget } from "../../components/StatsGridBudgets";
+import { abbreviateNumber } from "../../api/importantFunctions";
 
 export default function Streams() {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [isDone, setIsDone] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
   const streams = [
     {
@@ -44,6 +54,81 @@ export default function Streams() {
       amount: "5,000,000($)",
     },
   ];
+
+  const createStreamMutation = useMutation({
+    mutationFn: createStream,
+    onSuccess: () => {
+      setIsDone(true);
+      setName("");
+      setDescription("");
+      close();
+    },
+  });
+
+  const handleSubmit = () => {
+    setIsDone(false);
+    createStreamMutation.mutate({
+      name,
+      description,
+      school: "1",
+    });
+  };
+
+  const {
+    data: Account,
+    isLoading: loadingAccount,
+    error: accountError,
+  } = useQuery({
+    queryKey: ["account"],
+    queryFn: () => getAccountDetail("1"),
+  });
+  console.log("in account list", Account, accountError);
+
+  const {
+    data: Streams,
+    isLoading: loadingStreams,
+    error,
+  } = useQuery({
+    queryKey: ["streams"],
+    queryFn: getStreams,
+  });
+  console.log("in streams list", Streams, error);
+
+  const {
+    data: Incomes,
+    isLoading: loadingIncomes,
+    error: incomeError,
+  } = useQuery({
+    queryKey: ["incomes"],
+    enabled: !error,
+    queryFn: getIncome,
+  });
+  console.log("in incomes list", Incomes, incomeError);
+
+  const getStreamTotal = () => {
+    let totalStream = 0;
+    Streams &&
+      Streams.data &&
+      Streams.data.map((exp) => {
+        totalStream += exp.amount;
+      });
+
+    console.log("expenses total", totalStream);
+
+    return JSON.stringify(totalStream);
+  };
+
+  const main_balance =
+    Account && Account.data && Account.data[0] && Account.data[0].balance;
+
+  const data = [
+    { title: "Main Balance", amount: abbreviateNumber(parseInt(main_balance)) },
+    {
+      title: "Stream Balance",
+      amount: abbreviateNumber(parseInt(getStreamTotal())),
+    },
+  ];
+
   return (
     <>
       <Modal
@@ -54,35 +139,35 @@ export default function Streams() {
         padding={"lg"}
       >
         <Stack>
-          <TextInput label="Stream name" className="space-y-2" />
-          <TextInput label="Description" className="space-y-2" />
-          <Button className="bg-blue-400 text-white rounded w-fit ml-auto">
-            Create
+          <TextInput
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            label="Stream name"
+            className="space-y-2"
+          />
+          <TextInput
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            label="Description"
+            className="space-y-2"
+          />
+          <Button
+            onClick={handleSubmit}
+            className="bg-blue-400 text-white rounded w-fit ml-auto"
+          >
+            {!isDone ? "Create" : "Saving..."}
           </Button>
         </Stack>
       </Modal>
       <Layout>
-        <section className="p-6">
-          <Stack>
-            <Paper withBorder radius={"md"} p={"md"}>
-              <Stack>
-                <Text>Income Stream</Text>
-                <Paper className="w-60" withBorder p="md" radius="md">
-                  <Group justify="space-between">
-                    <Text size="xs" c="dimmed">
-                      Total Balance
-                    </Text>
-                    <IconDotsVertical />
-                  </Group>
-                  <Group className="pt-8">
-                    <Text>100,635.15</Text>
-                    <IconEye />
-                    <Badge leftSection={<IconArrowUp size={12} />}>10%</Badge>
-                  </Group>
-                </Paper>
-              </Stack>
-            </Paper>
-            <Text>Income Streams</Text>
+        <Box className="space-y-10 py-6">
+          <Box className="space-y-4">
+            <Text className="text-xl">Stream Details</Text>
+            <StatsGridBudget data={data} />
+          </Box>
+
+          <Box className="space-y-4">
+            <Text className="text-xl">Income Streams</Text>
             <SimpleGrid cols={4} className="flex-col md:flex-row">
               <Paper
                 className="!w-full h-full text-4xl text-gray-400 flex items-center justify-center hover:cursor-pointer"
@@ -93,35 +178,27 @@ export default function Streams() {
               >
                 +
               </Paper>
-              {streams.map((stream, index) => {
-                return (
-                  <Link key={index} href="/streams/23432">
-                    <StreamCard detail={stream} />
-                  </Link>
-                );
-              })}
+              {Streams &&
+                Streams.data &&
+                Streams.data.map((stream, index) => {
+                  return (
+                    <Link key={index} href={"/streams/" + stream.id}>
+                      <StreamCard detail={stream} />
+                    </Link>
+                  );
+                })}
             </SimpleGrid>
-            <Group justify="end">
-              <Button variant="default">
-                <Text className="mr-3">See more</Text>
-                <IconArrowRight />
-              </Button>
-            </Group>
-            <Paper
-              withBorder
-              p="md"
-              radius="md"
-              className="bg-transparent border-black"
-            >
-              <Paper p="md" radius="md" className="bg-purple-800/20">
-                <Group justify="start">
-                  <Text>Received payments</Text>
-                </Group>
-              </Paper>
-              <StreamsTable />
+          </Box>
+
+          <Box>
+            <Paper p="md" radius="md" className="bg-purple-800/20">
+              <Group justify="start">
+                <Text className="text-xl">Received payments</Text>
+              </Group>
             </Paper>
-          </Stack>
-        </section>
+            {Incomes && <StreamsTable incomes={Incomes} />}
+          </Box>
+        </Box>
       </Layout>
     </>
   );

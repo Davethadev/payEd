@@ -13,8 +13,25 @@ import { IconBell, IconChevronRight, IconSearch } from "@tabler/icons-react";
 import userClasses from "../styles/UserButton.module.css";
 import React from "react";
 import { ColorSchemeToggle } from "../components/ColorSchemeToggle";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
+import { useQuery } from "@tanstack/react-query";
+import { getUser } from "../api/users";
 
 function Topnav() {
+  const user = useUser();
+  const supabaseClient = useSupabaseClient();
+  const {
+    data: User,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["user"],
+    enabled: supabaseClient && user != null && user.id != null,
+    queryFn: () => getUser(user?.id as string, supabaseClient),
+  });
+
+  console.log("User ", User);
+
   return (
     <Paper className="sticky top-0 z-20">
       <Flex align={"center"} justify={"space-between"} className="px-6 ">
@@ -37,11 +54,11 @@ function Topnav() {
 
             <div style={{ flex: 1 }}>
               <Text size="sm" fw={500}>
-                Harriette Spoonlicker
+                {User && User.data && User.data[0].username}
               </Text>
 
               <Text c="dimmed" size="xs">
-                hspoonlicker@outlook.com
+                {user?.email}
               </Text>
             </div>
           </Group>
